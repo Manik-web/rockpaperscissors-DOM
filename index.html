@@ -29,9 +29,15 @@
         let roundResult = '';
         let scoresRunning = '';
         const container = document.querySelector('#choice-container');
+        let title = document.createElement('h3');
+        let runningScore = document.createElement('p');
+
+
 
         const results = document.createElement('div');
         results.className = 'results';
+        let gameResult = document.createElement('p');
+
 
         let playRound =(playerSelection, compSelection)=>{
     let message = '';
@@ -62,20 +68,24 @@
         let compInput=computerPlay();
         let compSelection= compInput.toLowerCase();
         let playerSelection= playerInput.toLowerCase();
-        let endMessage = playRound(playerSelection,compSelection)
-        alert(`You chose ${playerSelection} and the comp chose ${compSelection}...${endMessage}`);
+        let endMessage = playRound(playerSelection,compSelection);
+        roundResult = `You chose ${playerSelection} and the comp chose ${compSelection}...${endMessage}`;
             
          if (endMessage ===win){
             playerCount++;
+            console.log(`player ${playerCount}`);
             }else if(endMessage === lose){
-                compCount++;
+                compCount++;console.log(`comp ${compCount}`);
+
             }else{
                 roundResult = "It's a draw! No change to score";
                     }
-            gameCount++;        
+            gameCount++; 
+            console.log(`game ${gameCount}`);       
            scoresRunning = `After ${gameCount} games the scores are:\nYour score: ${playerCount} - Comp score: ${compCount}`;
 
-            if(gameCount ===1) createResults();
+            if(gameCount ===1) {createResults();}
+            else{updateResults();}
 
         if(gameCount ===5){
             if(compCount > playerCount){
@@ -84,12 +94,9 @@
         }gameCount=0;playerCount=0;compCount=0;}
         }
         let createResults = () =>{
-            let title = document.createElement('h3');
             title.textContent = 'Results!';
-            let gameResult = document.createElement('p');
             gameResult.textContent = roundResult;
-            let runningScore = document.createElement('p');
-            runningScore = scoresRunning;
+            runningScore.textContent = scoresRunning;
             
             console.log('where it at tho');
             results.append(title);
@@ -97,6 +104,12 @@
             results.append(runningScore);
             container.appendChild(results);
             
+        }
+        let updateResults=()=>{
+            gameResult.textContent = roundResult;
+            runningScore.textContent = scoresRunning;
+            console.log('update');
+
         }
        let displayResults = ()=>{
            const container = document.querySelector('#choice-container');
