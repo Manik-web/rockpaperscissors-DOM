@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Rock, Paper, Scissors</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="choice-container">
+        <div id="buttons">
+        <button id="rock" class="choice">ROCK</button>
+        <button id="paper"class="choice">PAPER</button>
+        <button id="scissors"class="choice">SCISSORS</button>
+    </div>
+
+    </div>
+    <script>
+        let choices = ['Rock','Paper','Scissors'];
+        let computerPlay = () =>{
+            let compChoice = choices[Math.floor(Math.random()*choices.length)];
+            return compChoice;
+        }
+        let lose = 'You lose!';
+        let win = "You Won!";
+        let compCount = 0;
+        let playerCount = 0;
+        let gameCount = 0;
+        let roundResult = '';
+        let scoresRunning = '';
+        const container = document.querySelector('#choice-container');
+
+        const results = document.createElement('div');
+        results.className = 'results';
+
+        let playRound =(playerSelection, compSelection)=>{
+    let message = '';
+    
+    if (compSelection===playerSelection){
+        message = "It's a draw";
+        }else if(compSelection==='rock'){
+            if (playerSelection==='paper'){
+                message =win;
+                } else{
+                    message =lose;
+                    }
+        } else if(compSelection ==="paper"){
+            if(playerSelection=== 'rock'){
+                message =lose;
+                } else {
+                    message =win;
+        }}else if (compSelection === 'scissors'){
+            if(playerSelection==='rock'){
+                message =win;
+            } else{message =lose;}
+        } return message;
+        }
+
+        let game = (choice) =>{
+
+        let playerInput = choice;
+        let compInput=computerPlay();
+        let compSelection= compInput.toLowerCase();
+        let playerSelection= playerInput.toLowerCase();
+        let endMessage = playRound(playerSelection,compSelection)
+        alert(`You chose ${playerSelection} and the comp chose ${compSelection}...${endMessage}`);
+            
+         if (endMessage ===win){
+            playerCount++;
+            }else if(endMessage === lose){
+                compCount++;
+            }else{
+                roundResult = "It's a draw! No change to score";
+                    }
+            gameCount++;        
+           scoresRunning = `After ${gameCount} games the scores are:\nYour score: ${playerCount} - Comp score: ${compCount}`;
+
+            if(gameCount ===1) createResults();
+
+        if(gameCount ===5){
+            if(compCount > playerCount){
+            alert('unfortunately you lost, refesh to try again');
+        }else {alert('You won! Great, refresh to try again!');
+        }gameCount=0;playerCount=0;compCount=0;}
+        }
+        let createResults = () =>{
+            let title = document.createElement('h3');
+            title.textContent = 'Results!';
+            let gameResult = document.createElement('p');
+            gameResult.textContent = roundResult;
+            let runningScore = document.createElement('p');
+            runningScore = scoresRunning;
+            
+            console.log('where it at tho');
+            results.append(title);
+            results.append(gameResult);
+            results.append(runningScore);
+            container.appendChild(results);
+            
+        }
+       let displayResults = ()=>{
+           const container = document.querySelector('#choice-container');
+           
+
+       }
+    
+    const choiceMade = document.querySelectorAll('.choice');
+    choiceMade.forEach((choice)=>{
+        choice.addEventListener('click',console.log('welldone'));
+        choice.onclick = () =>
+                game(choice.id);
+    });
+
+    
+  
+  
+    </script>
+   
+
+</body>
+</html>
