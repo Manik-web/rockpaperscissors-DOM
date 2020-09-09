@@ -1,14 +1,10 @@
 #buttons{
     display: flex;
-  flex: 1;
-  min-height: 50vh;
-  align-items: center;
-  justify-content: center;
-}
-.choice-container{
-    display:flex;
-    flex-direction:column;
-    height:50vh;
+    flex: 1;
+    min-height: 50vh;
+    align-items: center;
+    justify-content: center;
+    background:rgb(248, 249, 250);
 }
 
 
@@ -18,22 +14,21 @@
         margin: 1rem;
         font-size: 1.5rem;
         padding: 1rem .5rem;
-        transition: all .1s ease;
         width: 10rem;
         text-align: center;
         color: white;
         background: rgba(0,0,0,0.4);
         text-shadow: 0 0 .5rem black;
         cursor:pointer;
-      
 }
 
-.chosen{
-        transform: scale(1.1);
-        border-color: #ffc600;
-        box-shadow: 0 0 1rem #ffc600;
-}
+
 .results{
-    background:lightgray;
+    font-size:20pt;
+    color:#ffc600;
+    background:blue;
     text-align: center;
+    margin:auto;
+    padding-top:20px;
+    padding-bottom:20px;
 }
